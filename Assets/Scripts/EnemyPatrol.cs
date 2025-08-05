@@ -8,14 +8,23 @@ public class EnemyPatrol : MonoBehaviour
 
     public float speed = 5f;
 
+
+    Animator anim;
+
+    private void Awake()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
     private void Start()
     {
         transform.LookAt(pA.transform);
+        anim.SetBool("Walk", true);
     }
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed* Time.deltaTime);
+     transform.Translate(Vector3.forward * speed* Time.deltaTime);
+     
     }
 
     private void OnTriggerEnter(Collider other)

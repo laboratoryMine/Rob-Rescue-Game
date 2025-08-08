@@ -1,8 +1,11 @@
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public UILogic uiLogic;
+    public int damaged = 1;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -11,8 +14,20 @@ public class PlayerInteract : MonoBehaviour
             Reload();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Hurt")
+        {
+            GetDamaged(damaged);
+        }
+    }
 
-    void Reload()
+    public void GetDamaged(int damageamount)
+    {
+        uiLogic.TakeDamage(damageamount);
+        SFXManager.Instance.playerDamage.Play();
+    }
+  public  void Reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

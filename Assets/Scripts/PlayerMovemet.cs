@@ -20,7 +20,7 @@ public class PlayerMovemet : MonoBehaviour
     float gravity = -9.81f;
     bool isGrounded;
 
-    public string sceneName;
+   // public string sceneName;
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -49,9 +49,21 @@ public class PlayerMovemet : MonoBehaviour
         float speed = new Vector3(forward.x,0,forward.z).magnitude / Time.deltaTime;
 
         if (speed < 0.01f) speed = 0f;
+
         anim.SetFloat("Walking",speed);
-        
-       // Debug.Log(speed);
+
+
+        SFXManager.Instance.playerWalk.Play();
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            walk = 10f;
+        }
+        else
+        {
+            walk = 5f;
+        }
+        // Debug.Log(speed);
 
         if (isGrounded && velocity.y < 0f)
         {

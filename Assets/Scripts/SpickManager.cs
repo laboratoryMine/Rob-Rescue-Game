@@ -15,6 +15,7 @@ public class SpickManager : MonoBehaviour
 
     float timer;
 
+    public int damage = 1;
     private void Start()
     {
         startPos = transform.position;
@@ -34,10 +35,21 @@ public class SpickManager : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position ,distance,moveSpeed * Time.deltaTime);
 
+        SFXManager.Instance.traps.Play();
+
         if(Vector3.Distance(transform.position, distance) < 0.01f){
             isUp = !isUp;
             timer = pause;
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerInteract player = FindFirstObjectByType<PlayerInteract>();
+            player.GetDamaged(damage);
+        }
     }
 }

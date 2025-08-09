@@ -24,7 +24,7 @@ public class UILogic : MonoBehaviour
     Coroutine flicker;
 
     public GameObject winPage;
-    public TextMeshPro winLines;
+    public TextMeshProUGUI winLines;
 
     string[] lines = { ">> Mission Status:  SUCCESS  " +
             "\r\n>> Objective: Robo Rescued " +

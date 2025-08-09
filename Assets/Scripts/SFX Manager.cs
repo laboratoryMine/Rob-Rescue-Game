@@ -16,6 +16,8 @@ public class SFXManager : MonoBehaviour
 
     public AudioSource traps;
 
+    public AudioSource finalLine;
+
 
 
    

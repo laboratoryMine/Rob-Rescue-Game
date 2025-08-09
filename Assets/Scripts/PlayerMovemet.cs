@@ -21,6 +21,8 @@ public class PlayerMovemet : MonoBehaviour
     bool isGrounded;
     public float moveThreshold = 0.1f;
     // public string sceneName;
+
+    bool isMoving;
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
@@ -45,8 +47,11 @@ public class PlayerMovemet : MonoBehaviour
         Vector3 forward = transform.forward * frontBack * walk * Time.deltaTime;
 
         cc.Move(forward);
+        if (forward != Vector3.zero) {
+             isMoving = true;
+        }
 
-        bool isMoving = Mathf.Abs(Input.GetAxis("Horizontal")) > moveThreshold;
+         isMoving = Mathf.Abs(Input.GetAxis("Horizontal")) > moveThreshold;
 
         float speed = new Vector3(forward.x,0,forward.z).magnitude / Time.deltaTime;
 
@@ -75,7 +80,7 @@ public class PlayerMovemet : MonoBehaviour
 
         }
 
-        if (isMoving && isGrounded)
+        if (isMoving)
         {
             if (!SFXManager.Instance.playerWalk.isPlaying)
                 SFXManager.Instance.playerWalk.Play();

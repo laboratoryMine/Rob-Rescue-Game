@@ -13,12 +13,12 @@ public class KeyLogiic : MonoBehaviour
 
     bool isOpenned;
 
-
+    public UILogic uiLogic;
 
     public Dialog finalLine;
     private void Start()
     {
-    finalLine.gameObject.SetActive(false);
+   
         currentMat = GetComponent<MeshRenderer>();
     }
     private void OnTriggerEnter(Collider other)
@@ -34,11 +34,11 @@ public class KeyLogiic : MonoBehaviour
 
             SFXManager.Instance.opendKey.Play();
 
-            lockManager.CheckAllLocks();
+           lockManager.CheckAllLocks();
 
            // finalLine.gameObject.SetActive(false);
           //  SFXManager.Instance.jailOpend.PlayDelayed(1f);
-         //   finalLine.PlayNow();
+         
             //SFX here 
         }
 

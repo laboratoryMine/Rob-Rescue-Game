@@ -15,6 +15,7 @@ public class LockLogic : MonoBehaviour
     public GameObject[] alllocks;
     public GameObject jail;
     public Dialog finalLine;
+    public UILogic uiLogic;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class LockLogic : MonoBehaviour
 
     }
 
-    public void CheckAllLocks()
+    public bool CheckAllLocks()
     {
         foreach (GameObject lockObj in alllocks)
         {
@@ -40,24 +41,28 @@ public class LockLogic : MonoBehaviour
 
             LockLogic lockLogic = lockObj.GetComponent<LockLogic>();
             if (!lockLogic || !lockLogic.isUnlocked)
-                return;
+                return false;
         }
         OpenJail();
-        //SFX Here
+        return true;
+       
+     
+
     }
 
     void OpenJail()
     {
-        if (jail != null)
+      
 
-            SFXManager.Instance.jailOpend.PlayDelayed(1f);
-        jail.SetActive(false);
-        if (finalLine != null)
-        {
-           
-            GetComponent<UILogic>().Invoke("WinPage", 2f);
-            finalLine.PlayNow();
-        }
+            SFXManager.Instance.jailOpend.Play();
+        jail.gameObject.SetActive(false);
+
+
+
+        uiLogic.winPage.gameObject.SetActive(true);
+      //  finalLine.PlayNow();
+
+        SFXManager.Instance.finalLine.Play();
 
     }
 

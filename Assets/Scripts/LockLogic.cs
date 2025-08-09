@@ -22,14 +22,14 @@ public class LockLogic : MonoBehaviour
     }
     public void Unlocked()
     {
-        if(isUnlocked) return;
+        if (isUnlocked) return;
         mat.material = green;
 
-        
+
         isUnlocked = true;
 
         //sound here
-        
+
     }
 
     public void CheckAllLocks()
@@ -54,9 +54,11 @@ public class LockLogic : MonoBehaviour
         jail.SetActive(false);
         if (finalLine != null)
         {
-            finalLine.gameObject.SetActive(true);
+           
+            GetComponent<UILogic>().Invoke("WinPage", 2f);
             finalLine.PlayNow();
         }
 
     }
+
 }

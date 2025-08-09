@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 8300000, guid: 0ab8682e4d3a86d41b3999e2756bc095, type: 3}
-  coolDown: 3
+  coolDown: 0
   playOnlyOnce: 1
 --- !u!1001 &38651869
 PrefabInstance:
@@ -14446,7 +14446,7 @@ MonoBehaviour:
   - {fileID: 1971435456}
   - {fileID: 194047244}
   jail: {fileID: 985316281}
-  finalLine: {fileID: 0}
+  finalLine: {fileID: 35108561}
 --- !u!1001 &939347497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23238,9 +23238,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 9f1573c381c07df4b90b8c029421d964, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.837
-  m_Pitch: 1
-  Loop: 0
+  m_Volume: 0.344
+  m_Pitch: 2.15
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

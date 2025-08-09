@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,9 +18,18 @@ public class UILogic : MonoBehaviour
     int currentHp;
 
 
+    public GameObject tutoria;
     public string sceneName;
 
     Coroutine flicker;
+
+    public GameObject winPage;
+    public TextMeshPro winLines;
+
+    string[] lines = { ">> Mission Status:  SUCCESS  " +
+            "\r\n>> Objective: Robo Rescued " +
+            " \r\n>> Debrief: Against all odds, you infiltrated the chaos, navigated the hazards, and brought our unit home. " +
+            " \r\n>> Mission Accomplished. The system recognizes your excellence.\r\n" };
     private void Awake()
     {
         currentHp = Hp.Length;
@@ -30,6 +40,11 @@ public class UILogic : MonoBehaviour
         pauseMenue.SetActive(false);
     }
 
+    private void Start()
+    {
+        winPage.gameObject.SetActive(false);
+        StartCoroutine(TutorialFlicker());
+    }
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
@@ -134,6 +149,30 @@ public class UILogic : MonoBehaviour
 
     }
 
+    IEnumerator TutorialFlicker()
+    {
+        tutoria.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        tutoria.SetActive(false);
+      
+        yield return new WaitForSeconds(0.5f);
+  
+        tutoria.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        tutoria.SetActive(false);
+      
+        yield return new WaitForSeconds(0.8f);
+        tutoria.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        tutoria.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
+        tutoria.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        tutoria.SetActive(false);
+        yield return null;
+
+    }
+
     public void ClosePage()
     {
         pauseMenue.SetActive(false);
@@ -150,5 +189,24 @@ public class UILogic : MonoBehaviour
     {
 
         SceneManager.LoadScene(sceneName);
+    }
+    public void Win()
+    {
+        winPage.SetActive(true);
+
+        StartCoroutine(WinLines());
+
+
+    }
+    IEnumerator WinLines()
+    {
+
+
+        winLines.text = "";
+        foreach (string line in lines)
+        {
+            winLines.text += line + "\n";
+            yield return new WaitForSeconds(1.2f);
+        }
     }
 }
